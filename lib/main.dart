@@ -30,6 +30,7 @@ class PreloadVideos extends StatelessWidget {
       child: MaterialApp(
         key: _navigationService.navigationKey,
         debugShowCheckedModeBanner: false,
+        showPerformanceOverlay: true,
         darkTheme: ThemeData.dark(),
         theme: ThemeData.light(),
         home: HomePage(),
