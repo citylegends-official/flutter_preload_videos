@@ -22,6 +22,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.query_stats_rounded,
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _videoPlayerDetails.details.index,
         onTap: (index) {
@@ -32,9 +38,10 @@ class _HomePageState extends State<HomePage> {
             _ => null,
           };
 
-          setState(() {
-            _videoPlayerDetails = _tmp!;
-          });
+          if (_tmp != null)
+            setState(() {
+              _videoPlayerDetails = _tmp;
+            });
         },
         items: [
           BottomNavigationBarItem(
