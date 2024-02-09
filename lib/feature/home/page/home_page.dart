@@ -5,6 +5,7 @@ import 'package:flutter_preload_videos/feature/home/utils/navigation_details.dar
 import 'package:flutter_preload_videos/feature/media_kit/page/media_kit_page.dart';
 import 'package:flutter_preload_videos/feature/video_player/page/video_player_page.dart';
 import 'package:flutter_preload_videos/shared/fps_cubit.dart';
+import 'package:flutter_preload_videos/shared/fps_monitor.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,13 +27,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read<FpsCubit>().toggleFps(),
-        child: Icon(
-          context.read<FpsCubit>().state
-              ? Icons.disabled_visible_rounded
-              : Icons.query_stats_rounded,
-        ),
+      appBar: AppBar(
+        title: Text(_videoPlayerDetails.details.title),
+      ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            elevation: 0,
+            key: const Key('fps_monitor'),
+            backgroundColor: Colors.grey.shade800,
+            onPressed: () {},
+            child: FPSMonitor(),
+          ),
+          const SizedBox(height: 12),
+          FloatingActionButton(
+            key: const Key('overlay_toggle'),
+            onPressed: () => context.read<FpsCubit>().toggleFps(),
+            child: Icon(
+              context.read<FpsCubit>().state
+                  ? Icons.disabled_visible_rounded
+                  : Icons.query_stats_rounded,
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _videoPlayerDetails.details.index,
@@ -65,9 +83,9 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: switch (_videoPlayerDetails) {
-        VideoPlayerDetails.video_player => VideoPlayerPage(),
-        VideoPlayerDetails.better_player => BetterPlayerPage(),
-        VideoPlayerDetails.media_kit => MediaKitPage(),
+        VideoPlayerDetails.video_player => const VideoPlayerPage(),
+        VideoPlayerDetails.better_player => const BetterPlayerPage(),
+        VideoPlayerDetails.media_kit => const MediaKitPage(),
       },
     );
   }
