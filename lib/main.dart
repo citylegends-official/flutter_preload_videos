@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_preload_videos/feature/video_player/bloc/vp_bloc.dart';
 import 'package:flutter_preload_videos/feature/home/page/home_page.dart';
 import 'package:flutter_preload_videos/service/navigation_service.dart';
 import 'package:flutter_preload_videos/utils/injection.dart';
@@ -22,19 +20,15 @@ class PreloadVideos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<VPBloc>()
-        ..add(
-          VPEvent.getVideosFromApi(),
-        ),
-      child: MaterialApp(
-        key: _navigationService.navigationKey,
-        debugShowCheckedModeBanner: false,
-        showPerformanceOverlay: true,
-        darkTheme: ThemeData.dark(),
-        theme: ThemeData.light(),
-        home: HomePage(),
+    return MaterialApp(
+      key: _navigationService.navigationKey,
+      debugShowCheckedModeBanner: false,
+      showPerformanceOverlay: true,
+      darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+        colorSchemeSeed: Colors.orange,
       ),
+      home: HomePage(),
     );
   }
 }
