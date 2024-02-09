@@ -1,26 +1,32 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:better_player/better_player.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_preload_videos/service/api_service.dart';
 import 'package:flutter_preload_videos/core/constants.dart';
 import 'package:flutter_preload_videos/utils/isolate.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:video_player/video_player.dart';
 
-part 'vp_bloc.freezed.dart';
-part 'vp_event.dart';
-part 'vp_state.dart';
+part 'bp_bloc.freezed.dart';
+part 'bp_event.dart';
+part 'bp_state.dart';
 
 @injectable
 @prod
-class VPBloc extends Bloc<VPEvent, VPState> {
-  VPBloc() : super(VPState.initial()) {
+class BPBloc extends Bloc<BPEvent, BPState> {
+  BPBloc() : super(BPState.initial()) {
     on(_mapEventToState);
   }
 
-  void _mapEventToState(VPEvent event, Emitter<VPState> emit) async {
+  @override
+  Future<void> close() {
+    log('[DISPOSE] Disposing the BP Bloc instance');
+    return super.close();
+  }
+
+  void _mapEventToState(BPEvent event, Emitter<BPState> emit) async {
     await event.map(
       setLoading: (e) {
         emit(state.copyWith(isLoading: true));
@@ -51,11 +57,11 @@ class VPBloc extends Bloc<VPEvent, VPState> {
             index: e.index,
             setLoading: (context) => this
               ..add(
-                VPEvent.setLoading(),
+                BPEvent.setLoading(),
               ),
             updateUrls: (urls) => this
               ..add(
-                VPEvent.updateUrls(urls),
+                BPEvent.updateUrls(urls),
               ),
           );
         }
@@ -120,15 +126,24 @@ class VPBloc extends Bloc<VPEvent, VPState> {
   Future _initializeControllerAtIndex(int index) async {
     if (state.urls.length > index && index >= 0) {
       /// Create new controller
-      final _controller = VideoPlayerController.networkUrl(
-        Uri.parse(state.urls[index]),
-      );
+      final _controller = BetterPlayer.network(
+        state.urls[index],
+        betterPlayerConfiguration: BetterPlayerConfiguration(
+          autoPlay: true,
+          looping: true,
+        ),
+      ).controller;
 
       /// Add to [controllers] list
       state.controllers[index] = _controller;
 
       /// Initialize
-      await _controller.initialize();
+      await _controller.setupDataSource(
+        BetterPlayerDataSource(
+          BetterPlayerDataSourceType.network,
+          state.urls[index],
+        ),
+      );
 
       log('[INIT] New player initialized at $index');
     }

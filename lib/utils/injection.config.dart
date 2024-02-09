@@ -8,9 +8,11 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_preload_videos/feature/better_player/bloc/bp_bloc.dart'
+    as _i3;
 import 'package:flutter_preload_videos/feature/video_player/bloc/vp_bloc.dart'
-    as _i4;
-import 'package:flutter_preload_videos/service/navigation_service.dart' as _i3;
+    as _i5;
+import 'package:flutter_preload_videos/service/navigation_service.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -27,9 +29,13 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i3.NavigationService>(() => _i3.NavigationService());
-    gh.factory<_i4.VPBloc>(
-      () => _i4.VPBloc(),
+    gh.factory<_i3.BPBloc>(
+      () => _i3.BPBloc(),
+      registerFor: {_prod},
+    );
+    gh.lazySingleton<_i4.NavigationService>(() => _i4.NavigationService());
+    gh.factory<_i5.VPBloc>(
+      () => _i5.VPBloc(),
       registerFor: {_prod},
     );
     return this;

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_preload_videos/feature/better_player/bloc/bp_bloc.dart';
 import 'package:flutter_preload_videos/feature/home/utils/navigation_details.dart';
-import 'package:flutter_preload_videos/feature/video_player/bloc/vp_bloc.dart';
 import 'package:flutter_preload_videos/shared/video_widget.dart';
 import 'package:flutter_preload_videos/utils/injection.dart';
 import 'package:flutter_preload_videos/utils/video_resource.dart';
 
-class VideoPlayerPage extends StatefulWidget {
-  const VideoPlayerPage();
+class BetterPlayerPage extends StatefulWidget {
+  const BetterPlayerPage();
 
   @override
-  State<VideoPlayerPage> createState() => _VideoPlayerPageState();
+  State<BetterPlayerPage> createState() => _BetterPlayerPageState();
 }
 
-class _VideoPlayerPageState extends State<VideoPlayerPage> {
-  late final _videoPlayerDetails = VideoPlayerDetails.video_player;
+class _BetterPlayerPageState extends State<BetterPlayerPage> {
+  late final _videoPlayerDetails = VideoPlayerDetails.better_player;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<VPBloc>()
+      create: (_) => getIt<BPBloc>()
         ..add(
-          VPEvent.getVideosFromApi(),
+          BPEvent.getVideosFromApi(),
         ),
-      child: BlocBuilder<VPBloc, VPState>(
+      child: BlocBuilder<BPBloc, BPState>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -34,9 +34,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
             body: PageView.builder(
               itemCount: state.urls.length,
               scrollDirection: Axis.vertical,
-              onPageChanged: (index) => BlocProvider.of<VPBloc>(context)
+              onPageChanged: (index) => BlocProvider.of<BPBloc>(context)
                 ..add(
-                  VPEvent.onVideoIndexChanged(
+                  BPEvent.onVideoIndexChanged(
                     index,
                   ),
                 ),
@@ -47,7 +47,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 return state.focusedIndex == index
                     ? VideoWidget(
                         isLoading: _isLoading,
-                        videoResourceController: VPController(
+                        videoResourceController: BPController(
                           state.controllers[index]!,
                         ),
                       )

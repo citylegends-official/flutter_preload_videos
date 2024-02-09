@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_preload_videos/feature/better_player/page/bettter_player_page.dart';
 import 'package:flutter_preload_videos/feature/home/utils/navigation_details.dart';
 import 'package:flutter_preload_videos/feature/video_player/page/video_player_page.dart';
 
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: switch (_videoPlayerDetails) {
         VideoPlayerDetails.video_player => VideoPlayerPage(),
-        VideoPlayerDetails.better_player => null,
+        VideoPlayerDetails.better_player => BetterPlayerPage(),
         VideoPlayerDetails.media_kit => null,
       },
     );

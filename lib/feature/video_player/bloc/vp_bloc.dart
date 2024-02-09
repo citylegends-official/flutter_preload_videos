@@ -20,6 +20,12 @@ class VPBloc extends Bloc<VPEvent, VPState> {
     on(_mapEventToState);
   }
 
+  @override
+  Future<void> close() {
+    log('[DISPOSE] Disposing the VP Bloc instance');
+    return super.close();
+  }
+
   void _mapEventToState(VPEvent event, Emitter<VPState> emit) async {
     await event.map(
       setLoading: (e) {

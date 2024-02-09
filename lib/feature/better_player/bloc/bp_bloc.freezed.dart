@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'vp_bloc.dart';
+part of 'bp_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$VPEvent {
+mixin _$BPEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getVideosFromApi,
@@ -76,15 +76,15 @@ mixin _$VPEvent {
 }
 
 /// @nodoc
-abstract class $VPEventCopyWith<$Res> {
-  factory $VPEventCopyWith(VPEvent value, $Res Function(VPEvent) then) =
-      _$VPEventCopyWithImpl<$Res, VPEvent>;
+abstract class $BPEventCopyWith<$Res> {
+  factory $BPEventCopyWith(BPEvent value, $Res Function(BPEvent) then) =
+      _$BPEventCopyWithImpl<$Res, BPEvent>;
 }
 
 /// @nodoc
-class _$VPEventCopyWithImpl<$Res, $Val extends VPEvent>
-    implements $VPEventCopyWith<$Res> {
-  _$VPEventCopyWithImpl(this._value, this._then);
+class _$BPEventCopyWithImpl<$Res, $Val extends BPEvent>
+    implements $BPEventCopyWith<$Res> {
+  _$BPEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,7 +101,7 @@ abstract class _$$GetVideosFromApiImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$GetVideosFromApiImplCopyWithImpl<$Res>
-    extends _$VPEventCopyWithImpl<$Res, _$GetVideosFromApiImpl>
+    extends _$BPEventCopyWithImpl<$Res, _$GetVideosFromApiImpl>
     implements _$$GetVideosFromApiImplCopyWith<$Res> {
   __$$GetVideosFromApiImplCopyWithImpl(_$GetVideosFromApiImpl _value,
       $Res Function(_$GetVideosFromApiImpl) _then)
@@ -115,7 +115,7 @@ class _$GetVideosFromApiImpl implements _GetVideosFromApi {
 
   @override
   String toString() {
-    return 'VPEvent.getVideosFromApi()';
+    return 'BPEvent.getVideosFromApi()';
   }
 
   @override
@@ -209,7 +209,7 @@ class _$GetVideosFromApiImpl implements _GetVideosFromApi {
   }
 }
 
-abstract class _GetVideosFromApi implements VPEvent {
+abstract class _GetVideosFromApi implements BPEvent {
   const factory _GetVideosFromApi() = _$GetVideosFromApiImpl;
 }
 
@@ -222,7 +222,7 @@ abstract class _$$SetLoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SetLoadingImplCopyWithImpl<$Res>
-    extends _$VPEventCopyWithImpl<$Res, _$SetLoadingImpl>
+    extends _$BPEventCopyWithImpl<$Res, _$SetLoadingImpl>
     implements _$$SetLoadingImplCopyWith<$Res> {
   __$$SetLoadingImplCopyWithImpl(
       _$SetLoadingImpl _value, $Res Function(_$SetLoadingImpl) _then)
@@ -236,7 +236,7 @@ class _$SetLoadingImpl implements _SetLoading {
 
   @override
   String toString() {
-    return 'VPEvent.setLoading()';
+    return 'BPEvent.setLoading()';
   }
 
   @override
@@ -330,7 +330,7 @@ class _$SetLoadingImpl implements _SetLoading {
   }
 }
 
-abstract class _SetLoading implements VPEvent {
+abstract class _SetLoading implements BPEvent {
   const factory _SetLoading() = _$SetLoadingImpl;
 }
 
@@ -345,7 +345,7 @@ abstract class _$$UpdateUrlsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdateUrlsImplCopyWithImpl<$Res>
-    extends _$VPEventCopyWithImpl<$Res, _$UpdateUrlsImpl>
+    extends _$BPEventCopyWithImpl<$Res, _$UpdateUrlsImpl>
     implements _$$UpdateUrlsImplCopyWith<$Res> {
   __$$UpdateUrlsImplCopyWithImpl(
       _$UpdateUrlsImpl _value, $Res Function(_$UpdateUrlsImpl) _then)
@@ -380,7 +380,7 @@ class _$UpdateUrlsImpl implements _UpdateUrls {
 
   @override
   String toString() {
-    return 'VPEvent.updateUrls(urls: $urls)';
+    return 'BPEvent.updateUrls(urls: $urls)';
   }
 
   @override
@@ -483,7 +483,7 @@ class _$UpdateUrlsImpl implements _UpdateUrls {
   }
 }
 
-abstract class _UpdateUrls implements VPEvent {
+abstract class _UpdateUrls implements BPEvent {
   const factory _UpdateUrls(final List<String> urls) = _$UpdateUrlsImpl;
 
   List<String> get urls;
@@ -503,7 +503,7 @@ abstract class _$$OnVideoIndexChangedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$OnVideoIndexChangedImplCopyWithImpl<$Res>
-    extends _$VPEventCopyWithImpl<$Res, _$OnVideoIndexChangedImpl>
+    extends _$BPEventCopyWithImpl<$Res, _$OnVideoIndexChangedImpl>
     implements _$$OnVideoIndexChangedImplCopyWith<$Res> {
   __$$OnVideoIndexChangedImplCopyWithImpl(_$OnVideoIndexChangedImpl _value,
       $Res Function(_$OnVideoIndexChangedImpl) _then)
@@ -533,7 +533,7 @@ class _$OnVideoIndexChangedImpl implements _OnVideoIndexChanged {
 
   @override
   String toString() {
-    return 'VPEvent.onVideoIndexChanged(index: $index)';
+    return 'BPEvent.onVideoIndexChanged(index: $index)';
   }
 
   @override
@@ -636,7 +636,7 @@ class _$OnVideoIndexChangedImpl implements _OnVideoIndexChanged {
   }
 }
 
-abstract class _OnVideoIndexChanged implements VPEvent {
+abstract class _OnVideoIndexChanged implements BPEvent {
   const factory _OnVideoIndexChanged(final int index) =
       _$OnVideoIndexChangedImpl;
 
@@ -656,7 +656,7 @@ abstract class _$$DisposeAllControllersImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DisposeAllControllersImplCopyWithImpl<$Res>
-    extends _$VPEventCopyWithImpl<$Res, _$DisposeAllControllersImpl>
+    extends _$BPEventCopyWithImpl<$Res, _$DisposeAllControllersImpl>
     implements _$$DisposeAllControllersImplCopyWith<$Res> {
   __$$DisposeAllControllersImplCopyWithImpl(_$DisposeAllControllersImpl _value,
       $Res Function(_$DisposeAllControllersImpl) _then)
@@ -670,7 +670,7 @@ class _$DisposeAllControllersImpl implements _DisposeAllControllers {
 
   @override
   String toString() {
-    return 'VPEvent.disposeAllControllers()';
+    return 'BPEvent.disposeAllControllers()';
   }
 
   @override
@@ -765,40 +765,40 @@ class _$DisposeAllControllersImpl implements _DisposeAllControllers {
   }
 }
 
-abstract class _DisposeAllControllers implements VPEvent {
+abstract class _DisposeAllControllers implements BPEvent {
   const factory _DisposeAllControllers() = _$DisposeAllControllersImpl;
 }
 
 /// @nodoc
-mixin _$VPState {
+mixin _$BPState {
   List<String> get urls => throw _privateConstructorUsedError;
-  Map<int, VideoPlayerController> get controllers =>
+  Map<int, BetterPlayerController> get controllers =>
       throw _privateConstructorUsedError;
   int get focusedIndex => throw _privateConstructorUsedError;
   int get reloadCounter => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $VPStateCopyWith<VPState> get copyWith => throw _privateConstructorUsedError;
+  $BPStateCopyWith<BPState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VPStateCopyWith<$Res> {
-  factory $VPStateCopyWith(VPState value, $Res Function(VPState) then) =
-      _$VPStateCopyWithImpl<$Res, VPState>;
+abstract class $BPStateCopyWith<$Res> {
+  factory $BPStateCopyWith(BPState value, $Res Function(BPState) then) =
+      _$BPStateCopyWithImpl<$Res, BPState>;
   @useResult
   $Res call(
       {List<String> urls,
-      Map<int, VideoPlayerController> controllers,
+      Map<int, BetterPlayerController> controllers,
       int focusedIndex,
       int reloadCounter,
       bool isLoading});
 }
 
 /// @nodoc
-class _$VPStateCopyWithImpl<$Res, $Val extends VPState>
-    implements $VPStateCopyWith<$Res> {
-  _$VPStateCopyWithImpl(this._value, this._then);
+class _$BPStateCopyWithImpl<$Res, $Val extends BPState>
+    implements $BPStateCopyWith<$Res> {
+  _$BPStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -822,7 +822,7 @@ class _$VPStateCopyWithImpl<$Res, $Val extends VPState>
       controllers: null == controllers
           ? _value.controllers
           : controllers // ignore: cast_nullable_to_non_nullable
-              as Map<int, VideoPlayerController>,
+              as Map<int, BetterPlayerController>,
       focusedIndex: null == focusedIndex
           ? _value.focusedIndex
           : focusedIndex // ignore: cast_nullable_to_non_nullable
@@ -840,26 +840,26 @@ class _$VPStateCopyWithImpl<$Res, $Val extends VPState>
 }
 
 /// @nodoc
-abstract class _$$VPStateImplCopyWith<$Res> implements $VPStateCopyWith<$Res> {
-  factory _$$VPStateImplCopyWith(
-          _$VPStateImpl value, $Res Function(_$VPStateImpl) then) =
-      __$$VPStateImplCopyWithImpl<$Res>;
+abstract class _$$BPStateImplCopyWith<$Res> implements $BPStateCopyWith<$Res> {
+  factory _$$BPStateImplCopyWith(
+          _$BPStateImpl value, $Res Function(_$BPStateImpl) then) =
+      __$$BPStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {List<String> urls,
-      Map<int, VideoPlayerController> controllers,
+      Map<int, BetterPlayerController> controllers,
       int focusedIndex,
       int reloadCounter,
       bool isLoading});
 }
 
 /// @nodoc
-class __$$VPStateImplCopyWithImpl<$Res>
-    extends _$VPStateCopyWithImpl<$Res, _$VPStateImpl>
-    implements _$$VPStateImplCopyWith<$Res> {
-  __$$VPStateImplCopyWithImpl(
-      _$VPStateImpl _value, $Res Function(_$VPStateImpl) _then)
+class __$$BPStateImplCopyWithImpl<$Res>
+    extends _$BPStateCopyWithImpl<$Res, _$BPStateImpl>
+    implements _$$BPStateImplCopyWith<$Res> {
+  __$$BPStateImplCopyWithImpl(
+      _$BPStateImpl _value, $Res Function(_$BPStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -871,7 +871,7 @@ class __$$VPStateImplCopyWithImpl<$Res>
     Object? reloadCounter = null,
     Object? isLoading = null,
   }) {
-    return _then(_$VPStateImpl(
+    return _then(_$BPStateImpl(
       urls: null == urls
           ? _value.urls
           : urls // ignore: cast_nullable_to_non_nullable
@@ -879,7 +879,7 @@ class __$$VPStateImplCopyWithImpl<$Res>
       controllers: null == controllers
           ? _value.controllers
           : controllers // ignore: cast_nullable_to_non_nullable
-              as Map<int, VideoPlayerController>,
+              as Map<int, BetterPlayerController>,
       focusedIndex: null == focusedIndex
           ? _value.focusedIndex
           : focusedIndex // ignore: cast_nullable_to_non_nullable
@@ -898,8 +898,8 @@ class __$$VPStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VPStateImpl implements _VPState {
-  _$VPStateImpl(
+class _$BPStateImpl implements _BPState {
+  _$BPStateImpl(
       {required this.urls,
       required this.controllers,
       required this.focusedIndex,
@@ -909,7 +909,7 @@ class _$VPStateImpl implements _VPState {
   @override
   final List<String> urls;
   @override
-  final Map<int, VideoPlayerController> controllers;
+  final Map<int, BetterPlayerController> controllers;
   @override
   final int focusedIndex;
   @override
@@ -919,14 +919,14 @@ class _$VPStateImpl implements _VPState {
 
   @override
   String toString() {
-    return 'VPState(urls: $urls, controllers: $controllers, focusedIndex: $focusedIndex, reloadCounter: $reloadCounter, isLoading: $isLoading)';
+    return 'BPState(urls: $urls, controllers: $controllers, focusedIndex: $focusedIndex, reloadCounter: $reloadCounter, isLoading: $isLoading)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VPStateImpl &&
+            other is _$BPStateImpl &&
             const DeepCollectionEquality().equals(other.urls, urls) &&
             const DeepCollectionEquality()
                 .equals(other.controllers, controllers) &&
@@ -950,22 +950,22 @@ class _$VPStateImpl implements _VPState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$VPStateImplCopyWith<_$VPStateImpl> get copyWith =>
-      __$$VPStateImplCopyWithImpl<_$VPStateImpl>(this, _$identity);
+  _$$BPStateImplCopyWith<_$BPStateImpl> get copyWith =>
+      __$$BPStateImplCopyWithImpl<_$BPStateImpl>(this, _$identity);
 }
 
-abstract class _VPState implements VPState {
-  factory _VPState(
+abstract class _BPState implements BPState {
+  factory _BPState(
       {required final List<String> urls,
-      required final Map<int, VideoPlayerController> controllers,
+      required final Map<int, BetterPlayerController> controllers,
       required final int focusedIndex,
       required final int reloadCounter,
-      required final bool isLoading}) = _$VPStateImpl;
+      required final bool isLoading}) = _$BPStateImpl;
 
   @override
   List<String> get urls;
   @override
-  Map<int, VideoPlayerController> get controllers;
+  Map<int, BetterPlayerController> get controllers;
   @override
   int get focusedIndex;
   @override
@@ -974,6 +974,6 @@ abstract class _VPState implements VPState {
   bool get isLoading;
   @override
   @JsonKey(ignore: true)
-  _$$VPStateImplCopyWith<_$VPStateImpl> get copyWith =>
+  _$$BPStateImplCopyWith<_$BPStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,16 +1,16 @@
-part of 'vp_bloc.dart';
+part of 'bp_bloc.dart';
 
 @Freezed(makeCollectionsUnmodifiable: false)
-class VPState with _$VPState {
-  factory VPState({
+class BPState with _$BPState {
+  factory BPState({
     required List<String> urls,
-    required Map<int, VideoPlayerController> controllers,
+    required Map<int, BetterPlayerController> controllers,
     required int focusedIndex,
     required int reloadCounter,
     required bool isLoading,
-  }) = _VPState;
+  }) = _BPState;
 
-  factory VPState.initial() => VPState(
+  factory BPState.initial() => BPState(
         focusedIndex: 0,
         reloadCounter: 0,
         isLoading: false,
