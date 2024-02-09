@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:better_player/better_player.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_preload_videos/service/api_service.dart';
 import 'package:flutter_preload_videos/core/constants.dart';
 import 'package:flutter_preload_videos/utils/isolate.dart';
@@ -125,25 +126,31 @@ class BPBloc extends Bloc<BPEvent, BPState> {
 
   Future _initializeControllerAtIndex(int index) async {
     if (state.urls.length > index && index >= 0) {
-      /// Create new controller
-      final _controller = BetterPlayer.network(
+      /// Create new data source
+      final _dataSource = BetterPlayerDataSource(
+        BetterPlayerDataSourceType.network,
         state.urls[index],
-        betterPlayerConfiguration: BetterPlayerConfiguration(
+      );
+
+      /// Create new controller
+      final _controller = BetterPlayerController(
+        BetterPlayerConfiguration(
           autoPlay: true,
           looping: true,
+          expandToFill: true,
+          fit: BoxFit.cover,
+          aspectRatio: 9 / 16,
+          controlsConfiguration: BetterPlayerControlsConfiguration(
+            showControls: false,
+          ),
         ),
-      ).controller;
+      );
 
       /// Add to [controllers] list
       state.controllers[index] = _controller;
 
       /// Initialize
-      await _controller.setupDataSource(
-        BetterPlayerDataSource(
-          BetterPlayerDataSourceType.network,
-          state.urls[index],
-        ),
-      );
+      await _controller.setupDataSource(_dataSource);
 
       log('[INIT] New player initialized at $index');
     }

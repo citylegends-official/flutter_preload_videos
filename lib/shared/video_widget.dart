@@ -83,11 +83,8 @@ class _BetterPlayerViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: BetterPlayer(
-        controller: controller..setLooping(true),
-      ),
+    return BetterPlayer(
+      controller: controller,
     );
   }
 }
