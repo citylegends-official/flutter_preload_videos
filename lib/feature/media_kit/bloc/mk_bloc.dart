@@ -7,16 +7,17 @@ import 'package:flutter_preload_videos/core/constants.dart';
 import 'package:flutter_preload_videos/utils/isolate.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:video_player/video_player.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 
-part 'vp_bloc.freezed.dart';
-part 'vp_event.dart';
-part 'vp_state.dart';
+part 'mk_bloc.freezed.dart';
+part 'mk_event.dart';
+part 'mk_state.dart';
 
 @injectable
 @prod
-class VPBloc extends Bloc<VPEvent, VPState> {
-  VPBloc() : super(VPState.initial()) {
+class MKBloc extends Bloc<MKEvent, MKState> {
+  MKBloc() : super(MKState.initial()) {
     on(_mapEventToState);
   }
 
@@ -26,7 +27,7 @@ class VPBloc extends Bloc<VPEvent, VPState> {
     return super.close();
   }
 
-  void _mapEventToState(VPEvent event, Emitter<VPState> emit) async {
+  void _mapEventToState(MKEvent event, Emitter<MKState> emit) async {
     await event.map(
       setLoading: (e) {
         emit(state.copyWith(isLoading: true));
@@ -57,11 +58,11 @@ class VPBloc extends Bloc<VPEvent, VPState> {
             index: e.index,
             setLoading: (context) => this
               ..add(
-                VPEvent.setLoading(),
+                MKEvent.setLoading(),
               ),
             updateUrls: (urls) => this
               ..add(
-                VPEvent.updateUrls(urls),
+                MKEvent.updateUrls(urls),
               ),
           );
         }
@@ -125,18 +126,26 @@ class VPBloc extends Bloc<VPEvent, VPState> {
 
   Future _initializeControllerAtIndex(int index) async {
     if (state.urls.length > index && index >= 0) {
-      /// Create new controller
-      final _controller = VideoPlayerController.networkUrl(
-        Uri.parse(state.urls[index]),
+      /// Create a new [Player]
+      late final _player = Player(
+        configuration: PlayerConfiguration(
+          bufferSize: 64 * 1024 * 1024,
+        ),
       );
+
+      /// Create new controller
+      final _controller = VideoController(_player);
 
       /// Add to [controllers] list
       state.controllers[index] = _controller;
 
+      /// Media source
+      final _media = Media(state.urls[index]);
+
       /// Initialize
-      await _controller
-        ..initialize()
-        ..setLooping(true);
+      await _player
+        ..open(_media)
+        ..setPlaylistMode(PlaylistMode.single);
 
       log('[INIT] New player initialized at $index');
     }
@@ -148,7 +157,7 @@ class VPBloc extends Bloc<VPEvent, VPState> {
       final _controller = state.controllers[index]!;
 
       /// Play controller
-      _controller.play();
+      _controller.player.play();
 
       log('[PLAY] Playing at $index');
     }
@@ -160,10 +169,10 @@ class VPBloc extends Bloc<VPEvent, VPState> {
       final _controller = state.controllers[index]!;
 
       /// Pause
-      _controller.pause();
+      _controller.player.pause();
 
       /// Reset postiton to beginning
-      _controller.seekTo(Duration.zero);
+      _controller.player.seek(Duration.zero);
 
       log('[STOP] Stopped at $index');
     }
@@ -175,7 +184,7 @@ class VPBloc extends Bloc<VPEvent, VPState> {
       final _controller = state.controllers[index];
 
       /// Dispose controller
-      _controller?.dispose();
+      _controller?.player.dispose();
 
       if (_controller != null) {
         state.controllers.remove(_controller);

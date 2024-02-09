@@ -1,6 +1,7 @@
 import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_preload_videos/utils/video_resource.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 import 'package:video_player/video_player.dart';
 
 /// Custom feed widget consisting video player and loading indicator.
@@ -28,7 +29,9 @@ class VideoWidget extends StatelessWidget {
             BPController(:final controller) => _BetterPlayerViewer(
                 controller: controller,
               ),
-            MKController() => SizedBox(),
+            MKController(:final controller) => _MediaKitViewer(
+                controller: controller,
+              ),
           },
         ),
         AnimatedCrossFade(
@@ -66,7 +69,7 @@ class _VideoPlayerViewer extends StatelessWidget {
           width: controller.value.size.width,
           height: controller.value.size.height,
           child: VideoPlayer(
-            controller..setLooping(true),
+            controller,
           ),
         ),
       ),
@@ -85,6 +88,22 @@ class _BetterPlayerViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BetterPlayer(
       controller: controller,
+    );
+  }
+}
+
+class _MediaKitViewer extends StatelessWidget {
+  const _MediaKitViewer({
+    required this.controller,
+  });
+
+  final VideoController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Video(
+      controller: controller,
+      fit: BoxFit.cover,
     );
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_preload_videos/feature/better_player/page/bettter_player_page.dart';
 import 'package:flutter_preload_videos/feature/home/utils/navigation_details.dart';
+import 'package:flutter_preload_videos/feature/media_kit/page/media_kit_page.dart';
 import 'package:flutter_preload_videos/feature/video_player/page/video_player_page.dart';
+import 'package:flutter_preload_videos/shared/fps_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,9 +27,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.query_stats_rounded,
+        onPressed: () => context.read<FpsCubit>().toggleFps(),
+        child: Icon(
+          context.read<FpsCubit>().state
+              ? Icons.disabled_visible_rounded
+              : Icons.query_stats_rounded,
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -62,7 +67,7 @@ class _HomePageState extends State<HomePage> {
       body: switch (_videoPlayerDetails) {
         VideoPlayerDetails.video_player => VideoPlayerPage(),
         VideoPlayerDetails.better_player => BetterPlayerPage(),
-        VideoPlayerDetails.media_kit => null,
+        VideoPlayerDetails.media_kit => MediaKitPage(),
       },
     );
   }
