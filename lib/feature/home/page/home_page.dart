@@ -26,31 +26,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_videoPlayerDetails.details.title),
       ),
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FloatingActionButton(
-            elevation: 0,
-            key: const Key('fps_monitor'),
-            backgroundColor: Colors.grey.shade800,
-            onPressed: () {},
-            child: FPSMonitor(),
-          ),
-          const SizedBox(height: 12),
-          FloatingActionButton(
-            key: const Key('overlay_toggle'),
-            onPressed: () => context.read<FpsCubit>().toggleFps(),
-            child: Icon(
-              context.read<FpsCubit>().state
-                  ? Icons.disabled_visible_rounded
-                  : Icons.query_stats_rounded,
-            ),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.read<FPSCubit>().toggleFps(),
+        child: Icon(
+          context.read<FPSCubit>().state
+              ? Icons.disabled_visible_rounded
+              : Icons.query_stats_rounded,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _videoPlayerDetails.details.index,
@@ -82,11 +70,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: switch (_videoPlayerDetails) {
-        VideoPlayerDetails.video_player => const VideoPlayerPage(),
-        VideoPlayerDetails.better_player => const BetterPlayerPage(),
-        VideoPlayerDetails.media_kit => const MediaKitPage(),
-      },
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ColoredBox(
+            color: _theme.colorScheme.primaryContainer,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FPSMonitor(),
+            ),
+          ),
+          Expanded(
+            child: switch (_videoPlayerDetails) {
+              VideoPlayerDetails.video_player => const VideoPlayerPage(),
+              VideoPlayerDetails.better_player => const BetterPlayerPage(),
+              VideoPlayerDetails.media_kit => const MediaKitPage(),
+            },
+          ),
+        ],
+      ),
     );
   }
 }

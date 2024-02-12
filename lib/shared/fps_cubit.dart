@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 
-class FpsCubit extends Cubit<bool> {
-  FpsCubit() : super(false);
+class FPSCubit extends Cubit<bool> {
+  FPSCubit() : super(false);
 
   void toggleFps() => emit(!state);
 }

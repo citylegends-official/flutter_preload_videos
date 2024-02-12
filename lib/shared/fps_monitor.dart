@@ -78,31 +78,27 @@ class FPSMonitorState extends State<FPSMonitor> {
 
     final _labelSmall = _textTheme.labelSmall!.copyWith(
       fontSize: 8,
-      color: Colors.white,
     );
 
-    final _labelLarge = _textTheme.labelLarge!.copyWith(
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    );
-
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        (widget.visible && _timings.isNotEmpty)
+            ? Text(
+                _timings.last.fps.toStringAsFixed(0),
+                style: _labelSmall,
+              )
+            : Text(
+                '0',
+                style: _labelSmall,
+              ),
+        const SizedBox(width: 2),
         Text(
           'FPS',
           style: _labelSmall,
         ),
-        (widget.visible && _timings.isNotEmpty)
-            ? Text(
-                _timings.last.fps.toStringAsFixed(0),
-                style: _labelLarge,
-              )
-            : Text(
-                '0',
-                style: _labelLarge,
-              ),
       ],
     );
   }
